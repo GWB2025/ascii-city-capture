@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ASCII CITY PROTOTYPE 4</title>
+<link rel="stylesheet" href="./assets/styles-56019edcbe88ac04.css">
+</head>
+<body class="intro-active">
+<div id="app">
+  <main id="viewport" aria-label="ASCII City live viewport">
+    <canvas id="cv"></canvas>
+    <div id="fx"></div>
+  </main>
+  <aside id="interface" aria-label="City interface">
+    <div id="music-controls"><button id="music-toggle" type="button" aria-pressed="false">MUSIC</button><output id="music-volume" aria-label="Music volume">50%</output></div>
+    <canvas id="interface-ascii" aria-hidden="true"></canvas>
+    <details id="diagnostics">
+      <summary aria-label="Toggle system details">SYS_DETAILS.DAT</summary>
+      <div class="diagnostic-body">
+      <section class="module">
+        <div class="module-label">00::INPUT_LINK</div>
+        <dl class="readout-grid">
+          <div><dt>Mouse</dt><dd id="ui-capture" class="accent">CLICK CITY FEED</dd></div>
+          <div><dt>Movement</dt><dd>WASD / ARROWS</dd></div>
+          <div><dt>Look</dt><dd>MOUSE / DRAG</dd></div>
+          <div><dt>Velocity</dt><dd>SHIFT / SPRINT</dd></div>
+          <div><dt>Use</dt><dd class="accent">E / INTERACT</dd></div>
+          <div><dt>Auto tour</dt><dd id="ui-auto-tour" class="accent">T / OFF</dd></div>
+          <div><dt>Sky taxi</dt><dd id="ui-sky-taxi" class="accent">Y / LOCATE</dd></div>
+          <div><dt>Ground taxi</dt><dd class="accent">SHIFT+Y / LOCATE</dd></div>
+          <div><dt>Monorail</dt><dd class="accent">SHIFT+M / LOCATE</dd></div>
+          <div><dt>Population</dt><dd id="ui-population" class="accent">P / VISIBLE</dd></div>
+          <div><dt>Render mode</dt><dd class="accent">G / SOLID GLYPHS</dd></div>
+          <div><dt>Map zoom</dt><dd class="accent">M / CYCLE</dd></div>
+          <div><dt>3D atlas</dt><dd class="accent">TAB / OPEN</dd></div>
+          <div><dt>Saved places</dt><dd class="accent">F2 / DIRECTORY</dd></div>
+          <div><dt>Controls</dt><dd class="accent">F1 / HELP</dd></div>
+          <div><dt>Weather</dt><dd class="accent">R / TOGGLE</dd></div>
+        </dl>
+      </section>
+      <section class="module">
+        <div class="module-label">01::NAVIGATION</div>
+        <dl class="readout-grid">
+          <div><dt>Sector</dt><dd id="ui-sector" class="accent">AV 09 / ST 09</dd></div>
+          <div><dt>Coordinates</dt><dd id="ui-coord">264.00 / 264.00</dd></div>
+          <div><dt>Elevation</dt><dd id="ui-elevation" class="accent">0.0 M</dd></div>
+          <div><dt>Bearing</dt><dd id="ui-bearing">000° / NORTH</dd></div>
+          <div><dt>Render</dt><dd id="ui-fps">-- FPS</dd></div>
+          <div><dt>Weather</dt><dd id="ui-weather">RAIN / R TO TOGGLE</dd></div>
+        </dl>
+      </section>
+      <section class="module">
+        <div class="module-label">02::CITY_ACTIVITY</div>
+        <dl class="readout-grid">
+          <div><dt>Pedestrians</dt><dd id="ui-npcs">240 TRACKED</dd></div>
+          <div><dt>Vehicles</dt><dd id="ui-cars">320 TRACKED</dd></div>
+          <div><dt>Static nodes</dt><dd id="ui-static">5238 INDEXED</dd></div>
+          <div><dt>In view</dt><dd id="ui-visible" class="accent">--- VISIBLE</dd></div>
+          <div><dt>Street props</dt><dd id="ui-props">--- INDEXED</dd></div>
+          <div><dt>Sign network</dt><dd id="ui-signs" class="accent">ONLINE</dd></div>
+          <div><dt>Path state</dt><dd id="ui-path" class="accent">CHECKING</dd></div>
+          <div><dt>Crossings</dt><dd id="ui-crossings">--- ACTIVE</dd></div>
+        </dl>
+      </section>
+      <section class="module">
+        <div class="module-label">04::PORTAL_NETWORK</div>
+        <dl class="readout-grid">
+          <div><dt>Zone</dt><dd id="ui-zone" class="accent">CITY / EXTERIOR</dd></div>
+          <div><dt>Nearest link</dt><dd id="ui-portal-distance">--- METRES</dd></div>
+          <div><dt>Link state</dt><dd id="ui-portal-state" class="accent">READY</dd></div>
+          <div><dt>Destination</dt><dd id="ui-destination">NOCTURNE MART</dd></div>
+        </dl>
+      </section>
+      </div>
+    </details>
+    <section id="context-panel" aria-live="polite" hidden>
+      <div class="module-label" id="ui-context-label">03::LOCAL_CONTEXT</div>
+      <div class="empty-bay"><div><strong id="ui-context-title"></strong><span id="ui-context-copy"></span><div id="ui-context-choices" hidden></div></div></div>
+    </section>
+  </aside>
+</div>
+<div id="topo-map-overlay" role="dialog" aria-modal="true" aria-label="ASCII City 3D topographic map" aria-hidden="true">
+  <div id="topo-map-shell">
+    <canvas id="topo-map-canvas" aria-label="Rotating 3D wireframe city terrain map"></canvas>
+    <div id="topo-map-scan"></div>
+    <div id="topo-map-hud"><strong>ASCII CITY // TOPOGRAPHIC NETWORK</strong>
+LIVE TERRAIN LINK // INITIALISING</div>
+    <button id="topo-map-close" type="button">CLOSE // TAB</button>
+  </div>
+</div>
+<div id="relay-transfer" class="active" aria-hidden="true"><span id="relay-transfer-text">CONNECTION ACCEPTED<br>ENTERING THE PLANE</span></div>
+<div id="prelude-prompt" aria-hidden="true">Answer the phone &nbsp; [ E ]</div>
+<aside id="mobile-hud" aria-live="polite" hidden>
+  <div id="mobile-hud-zone"></div>
+  <div id="mobile-hud-bearing"></div>
+</aside>
+<section id="mobile-context" aria-live="polite" hidden>
+  <div id="mobile-context-label"></div>
+  <strong id="mobile-context-title"></strong>
+  <span id="mobile-context-copy"></span>
+</section>
+<section id="orientation-guide" role="status" aria-live="polite" hidden>
+  <div>LANDSCAPE RECOMMENDED</div>
+  <p>Rotate for the widest city view and separated movement/look controls.</p>
+  <button id="orientation-continue" type="button">CONTINUE</button>
+</section>
+<div id="touch-controls" aria-label="Touch controls" hidden>
+  <div id="touch-move" class="touch-stick" role="application" aria-label="Movement thumbstick">
+    <span class="touch-stick-thumb" aria-hidden="true"></span>
+  </div>
+  <div id="touch-look" class="touch-stick touch-look" role="application" aria-label="Look thumbstick">
+    <span class="touch-stick-thumb" aria-hidden="true"></span>
+  </div>
+  <div class="touch-action-cluster" aria-label="Game actions">
+    <button id="touch-action" type="button">USE</button>
+    <button id="touch-back" type="button">BACK</button>
+    <button id="touch-panel" type="button" aria-controls="interface" aria-expanded="false">PANEL</button>
+    <button id="touch-pause" type="button" aria-pressed="false">PAUSE</button>
+    <button id="touch-layout" type="button" title="Force the desktop mouse+keyboard layout on this device">DESKTOP</button>
+  </div>
+  <div id="touch-choice-controls" aria-label="Context choices" hidden>
+    <button type="button" data-touch-choice="0"></button>
+    <button type="button" data-touch-choice="1"></button>
+    <button type="button" data-touch-choice="2"></button>
+  </div>
+</div>
+<section id="touch-pause-menu" role="dialog" aria-modal="true" aria-labelledby="touch-pause-title" hidden>
+  <div id="touch-pause-title">CITY LINK PAUSED</div>
+  <p>Touch controls and simulation are on hold.</p>
+  <button id="touch-resume" type="button">RESUME</button>
+</section>
+<script type="module" src="./assets/main-b0425db495e6c873.js"></script>
+</body>
+</html>

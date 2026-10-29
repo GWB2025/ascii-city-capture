@@ -1,0 +1,229 @@
+ASCII CITY CAPTURE 1.2.1 — browser fetch repair, 29 October 2026
+
+The version selector stored Window.fetch as an instance property and invoked it
+with the selector instance as its receiver. Chrome rejected this with the exact
+reported Illegal invocation error. The default request function now calls
+fetch through globalThis so the browser receives the correct global object.
+
+A new regression test first reproduced the exact error against 1.2.0, then
+passed after the repair. It enforces the native browser receiver requirement
+and checks both catalogue GET and version-selection POST requests. Node's native
+fetch and the earlier arrow-function mocks did not enforce that requirement.
+
+55 tests passed for this patch: 35 Python and 20 JavaScript. The five jsdom UI
+tests now also have a stricter fetch mock, but were not rerun for this patch.
+City rendering, adapter generation and export geometry are unchanged. The
+three city replays documented below are the previous 1.2.0 validation.
+
+Native bundle self-test, moved-bundle payload validation, ad-hoc signature
+verification and archive integrity checks passed. Both bundled releases are
+included. The complete normal Chrome launch remains unverified in this session.
+
+PREVIOUS RELEASE VALIDATION
+
+ASCII CITY CAPTURE 1.2.0 — selectable city versions, 28 October 2026
+
+59 automated checks passed: 35 Python and 24 JavaScript (19 local unit tests,
+5 jsdom interface tests). New checks cover persisted version selection, immutable
+snapshots, same-URL updates including metadata-only releases, verified hashes,
+URL/path restrictions, compatibility rejection, background download jobs,
+separate release asset routes, same-origin API writes and stale iframe messages.
+The original dynamic-port/startup regression tests remain passing.
+
+Three isolated native Canvas replays passed, each with two captures and
+pause/resume: actual Prototype 4; actual Prototype 4.5 with its real bootstrap;
+and a synthetic 4.5-based fixture with every obfuscated identifier renamed.
+The third fixture verifies automatic symbol discovery, not an actual future
+release. It is not packaged as a selectable city.
+
+All nine navigation fields matched each release's own navigation renderer.
+The second captures contained 28,997 / 31,178 / 31,160 character draws and
+579 / 726 / 722 paint colours respectively. SVG print exports retained all
+characters, release identities and navigation comments. Export sizes were
+5,156,684 / 5,567,590 / 5,565,938 bytes. Counts vary with simulation timing.
+Stale capture commands were ignored; the version-selector UI kept capture
+disabled until the new city reported ready. Unsupported and failed checks left
+the existing session available. No export geometry changed in this release.
+
+The native Apple Silicon launcher was rebuilt and ad-hoc signed. Bundle
+self-test, signature verification, moved-payload validation of both included
+city releases and ZIP integrity checks passed. The normal double-click launch
+in Chrome has not been exercised in this restricted development session.
+No plotter hardware was connected. Ad-hoc signing is not Apple notarisation.
+
+Future builds are recognised only while they retain the inspected drawing and
+navigation conventions. Capture detected means a compatible structure was found;
+the user should check its first preview. A substantially changed release may
+need an updated capture app. New releases require a supplied URL; there is no
+automatic discovery of the newest city site. Switching starts a new session.
+
+PREVIOUS RELEASE VALIDATION
+
+ASCII City Capture 1.1.0 — Prototype 4.5 update, 28 October 2026
+
+CURRENT RELEASE
+
+City: ASCII CITY PROTOTYPE 4.5, internal build 0.4.5-dn.14.
+Source: https://prototype4-5-a5be.grownowgames.workers.dev/
+Main script SHA256:
+876c7780ec66cb15e324e023a836fe3b81d1abf0be405860440bd909faee7c39
+
+The HTML, CSS, bootstrap and main script were updated. The terrain worker and
+WASM binary are unchanged between these releases. All five packaged executable
+and stylesheet asset hashes match the supplied release manifest. The companion
+loads the original bootstrap after installing the capture bridge and local
+font, and enables capture only after the bootstrap reports ready.
+
+34 automated tests passed: 17 Python and 17 JavaScript. Coverage includes the
+new bootstrap loader, HTTP HEAD/Date clock support, HTTP asset/identity routes,
+saved endpoint validation, service reuse, automatic port allocation, occupied
+port fallback, native runtime copying and all existing geometry/navigation
+checks. Startup tests use mock processes and in-memory HTTP connections; they
+do not bind sockets or open a browser on the Mac.
+
+An isolated replay runs the actual 4.5 bootstrap, main JavaScript, WASM and
+production capture bridge in jsdom with native Canvas 2D. Startup completed its
+real calibration/progress sequence. Four captures passed: the starting view
+by day and by night, plus an open sky view at noon and midnight. Pause/resume,
+keyboard movement and mouse look worked. All nine navigation fields matched
+the original navigation renderer before line wrapping. Only supported drawing
+operations (clearRect, fillRect and fillText) were used.
+
+The sky test reported sun elevation +0.42978 radians by day and -0.87561 radians
+at midnight. The captured scenes contained 883 and 741 paint colours. Print
+SVGs retained every captured character draw (26,400 and 26,204 respectively).
+Their plotter exports each split into four passes; all parts remained below
+210,000 estimated samples and 8 MiB, with every path present exactly once.
+Navigation comments and release identification were retained in every part.
+
+The first two near-street test scenes retained 33,792 and 30,974 character draws
+in their print SVGs. Each plotter export used three passes. The colour print
+SVGs were rasterised and visually compared with their corresponding captured
+PNGs; shapes, colours, positioning and occlusion agreed, allowing for different
+Canvas and SVG antialiasing. Counts vary slightly between simulation runs.
+
+The launcher now allocates and records a local address per packaged runtime,
+reuses a matching service, and verifies its instance before opening it. A busy
+saved port falls back to a free port. It does not contact or stop the legacy
+fixed-port service, so that service no longer blocks upgrades. A startup lock
+prevents two simultaneous launches of this release from starting duplicates.
+Native bundle self-test, code-signature verification, moved-bundle validation
+and final ZIP integrity checks passed.
+
+The complete normal Mac double-click/browser launch remains unverified in this
+restricted development session. This is an isolated application replay and
+packaging check, not a physical plotter test or a test of every transport route.
+The day/night HTTP clock uses the Mac's current system time. Future upstream
+releases are not loaded automatically.
+
+PREVIOUS 1.0.2 CHECKS (28 OCTOBER 2026)
+
+NAVIGATION EXPORT
+
+17 JavaScript tests and seven Python tests passed. New tests verify readable
+navigation comments, metadata, all numbered plotter parts, missing/interior
+fields, world-coordinate offsets, nearest phones/landmarks, airborne elevation,
+capture snapshots and XML-comment sanitisation. All five new tests were first
+run against the previous implementation and failed before the feature was added.
+
+An isolated replay of the pinned city, using the production bridge and adapter,
+compared all nine captured fields to the real navigation renderer's complete
+rows. Both captures matched. Turning after resuming changed the bearing from
+270 DEG / WEST to 286 DEG / WEST; the earlier capture remained unchanged.
+The second capture contained 30,425 character draws. Its navigation was:
+  District: CHARTER WARD
+  City Pos: CENTRAL
+  Elevation: 0.2M TERRAIN
+  Sector: SIGNAL / D5
+  Street: MERCER STREET
+  Cross: CROWN ROAD
+  Landmark: SIGNAL KEEPER / 15M NE
+  Phone: 2M W
+  Bearing: 286 DEG / WEST
+This was a controlled replay, not a live Chrome or transport-journey test.
+
+The full earlier scene was re-exported to check character/path preservation,
+part budgets and XML validity. Its legacy capture has no navigation fields;
+the exporter explicitly marks them Not available. Native bundle self-test,
+signature verification and installed-payload validation also passed for 1.0.2.
+
+PREVIOUS LAUNCHER VALIDATION (26 OCTOBER 2026)
+
+LAUNCHER REPAIR
+
+The downloaded 1.0.0 package was intact and executable, but no startup log was
+present. Its launcher used files beside the .app and wrote logs beside those
+files, which is unsafe as a packaging assumption for relocated/read-only apps.
+The exact macOS failure was not recorded, so App Translocation is a plausible
+cause rather than a confirmed diagnosis.
+
+The 1.0.1 launcher is a native arm64 Mach-O executable. All city/runtime resources
+are inside the .app. A content-identified runtime copy, downloaded music and logs
+are stored in the user's Application Support directory. Startup shows a progress
+window, and failures produce a native error dialog with diagnostic text.
+
+Native bundle self-test and ad-hoc code-signature verification passed. Ad-hoc
+signing is not Apple notarisation. No quarantine attributes or security settings
+were removed or changed.
+
+Seven Python tests passed, including standalone/moved bundle resources, stable
+runtime reuse, operation after the source app is removed, incomplete-package
+errors, validation without network/browser access, and separate writable cache.
+The original three asset, path and font tests are included in that total.
+
+The full browser/server launch still requires the normal Mac user session:
+the development sandbox does not allow binding its local server port. The repair
+has therefore not yet been verified by opening the live city in Chrome.
+
+PREVIOUS CAPTURE/EXPORT CHECKS (25 OCTOBER 2026)
+
+PASSED
+
+12 independent vector tests: partial occlusion, overlapping occluders, glyph
+holes, coincident edges, canvas clipping, page dimensions, opacity composition,
+curve flattening, hidden glyphs, zero-length font segments, plain-path output
+and explicit rejection of unsupported drawing operations.
+
+3 Python tests: pinned city release and capture hook, traversal rejection,
+availability of the local font.
+
+Full-scene export check using the earlier real 180 x 80 capture:
+  Captured character draws: 33,780
+  Character draws preserved in print SVG: 33,780
+  Print SVG size: 5,983,703 bytes
+  Visible plotting characters: 14,409
+  Pen strokes: 24,260
+  A4 portrait placement: 190 x 126.199 mm, centred
+  Plot parts: 3, in identical page coordinates
+  Part 1: 4,608,849 bytes, estimated 210,000 importer samples
+  Part 2: 4,932,627 bytes, estimated 209,995 importer samples
+  Part 3: 1,287,582 bytes, estimated 56,462 importer samples
+  Every path appears in exactly one part; no paths are lost when splitting.
+  Each part is below SVG Plotter's 8 MiB and 250,000 sample limits.
+  Parts contain plain paths and no text, image, clone or clipping dependencies.
+
+ZIP CRC/integrity and independent XML parsing passed for all plot parts.
+Print and plot SVGs were rasterised with librsvg and visually inspected.
+
+Isolated replay of the original, pinned application with the actual capture
+bridge: two complete character captures; paused animation stopped scheduling;
+resume restored one loop; mouse look changed yaw from -1.5707963267948966 to
+-1.2851664939450143; the second frame contained 29,248 glyph draws in the final run (counts vary with simulation). No application
+errors were reported. The replay used jsdom and a native Canvas 2D implementation.
+
+LIMITS
+
+The replay is an integration test, not a live Chrome test. Local web-server
+binding was denied by the development sandbox. Browser policy also denied
+file-URL preview navigation. No attempt was made to bypass those restrictions.
+The double-click launch and complete browser interaction need a smoke test in
+the normal Mac session. Individual transport journeys and music were not tested.
+No USB connection or physical plotting was performed.
+
+The print test used Courier New outlines with previously recorded coordinates.
+The live adapter explicitly loads the chosen local font before the city starts,
+so that live character spacing and exported outlines use the same font.
+Rasterisation/antialiasing may differ between Canvas, SVG viewers and printers.
+Pen output is an outline interpretation: translucent effects are solid outlines,
+very faint draws below 1% opacity are omitted, and no shading or background
+strokes are added. Original character identities are retained in SVG metadata.

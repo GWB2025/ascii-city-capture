@@ -1,0 +1,28 @@
+# Local dependencies and Python bytecode
+.venv/
+venv/
+node_modules/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Generated app bundles, installers and captured output
+*.app/
+dist/
+build/
+test-output/
+*.pkg
+*.zip
+coverage/
+
+# User settings, downloaded snapshots, services and logs
+city-data/
+downloads/
+runtime/
+services/
+logs/
+*.log
+.env
+.env.*
+!.env.example
+.DS_Store

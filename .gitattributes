@@ -1,0 +1,4 @@
+# Preserve original upstream asset bytes so manifest checksums stay valid.
+cache/** -text -diff -whitespace linguist-vendored=true
+releases/** -text -diff -whitespace linguist-vendored=true
+web/vendor/** -text -whitespace linguist-vendored=true

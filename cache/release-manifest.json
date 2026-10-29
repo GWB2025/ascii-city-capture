@@ -1,0 +1,287 @@
+{
+  "schemaVersion": "ascii-city.release-manifest.v1",
+  "release": {
+    "name": "ASCII CITY PROTOTYPE 4.5",
+    "version": "0.4.5-dn.14",
+    "status": "public-candidate-not-deployed"
+  },
+  "assets": {
+    "css": {
+      "file": "assets/styles-6ca95a15a839422e.css",
+      "sha256": "6ca95a15a839422ead5145a5d9b4fdbd4a6bc32bece3b1c3b06ea67884e8dc0b"
+    },
+    "javascript": {
+      "file": "assets/main-876c7780ec66cb15.js",
+      "sha256": "876c7780ec66cb15e324e023a836fe3b81d1abf0be405860440bd909faee7c39"
+    },
+    "terrainWorker": {
+      "file": "assets/terrain-worker-775c4d3269c94d28.js",
+      "sha256": "775c4d3269c94d28b676056b3f6db4fa5964d1925b9e07491b954b8930df0377"
+    },
+    "wasm": {
+      "file": "assets/engine-916e169f95cfcb37.wasm",
+      "sha256": "916e169f95cfcb373c98959b1c9f081d2ff6df85f9f27ee749b17cf588d95e85"
+    },
+    "audio": {
+      "file": "assets/audio/feed-54c85c9e6dcd628f.mp3",
+      "sha256": "54c85c9e6dcd628fc7f9b6acd37a4a3da030be8347b8a9af216a4b45a055862b",
+      "title": "CITY SOUNDTRACK"
+    },
+    "bootstrap": {
+      "file": "assets/boot-db3fcdad0a0ca602.js",
+      "sha256": "db3fcdad0a0ca60206e7af9e68d951cc7f6aae2682aba10e6ed1163b3c07c1bf"
+    }
+  },
+  "server": {
+    "mode": "static-only",
+    "files": [],
+    "clock": "Same-origin static HEAD response Date/Age headers; no API, Pages Function or Cloudflare Worker"
+  },
+  "buildPolicy": {
+    "sourceMaps": "excluded",
+    "browserSource": "bundled, minified, mangled, and identifier-obfuscated; static private-field aliases; startup-only string masking; private internal hooks; hot-loop string transforms disabled; no source map",
+    "terrainWorker": "minified and identifier-obfuscated; no string decoder in worker loops; no source map",
+    "startupStrings": {
+      "unique": 1307,
+      "occurrences": 1746,
+      "execution": "decoded once before startup; function bodies excluded"
+    },
+    "privateHooks": {
+      "count": 8,
+      "references": 34
+    },
+    "privateFields": {
+      "count": 48,
+      "references": 386,
+      "execution": "build-time aliases; no runtime decoder"
+    },
+    "filmingProfileExcluded": true,
+    "wasm": "only bridge-required exports retained; identifying and debug custom sections stripped",
+    "wasmExportsRetained": [
+      "memory",
+      "ascii_city_terrain_generate",
+      "ascii_city_terrain_length",
+      "ascii_city_runtime_buffer",
+      "ascii_city_runtime_length",
+      "ascii_city_runtime_run",
+      "ascii_city_hash2",
+      "ascii_city_plans_generate",
+      "ascii_city_plans_length"
+    ],
+    "wasmExportsRemovedCount": 249,
+    "wasmCustomSectionsBefore": [
+      "__wasm_bindgen_unstable",
+      "name",
+      "producers",
+      "target_features"
+    ],
+    "wasmCustomSectionsRemoved": [
+      "__wasm_bindgen_unstable",
+      "name",
+      "producers"
+    ],
+    "wasmCustomSectionsAfter": [
+      "target_features"
+    ],
+    "codeProtection": "performance-safe casual-inspection deterrence only; static assets remain downloadable and rehostable",
+    "localDiagnostics": false,
+    "monorailProjection": {
+      "enabled": true,
+      "functionsCorrected": 3,
+      "depth": "camera-forward conservative bound",
+      "footprints": "unpitched slope-space clipping; pitch applied after column intersection",
+      "geometry": "unchanged analytic ray/prism intersections",
+      "scope": "near guideway and turnback visibility"
+    },
+    "trafficRoadOwnership": {
+      "enabled": true,
+      "scope": "authored road closures and non-road footprints",
+      "routing": "divert at the preceding real junction",
+      "footprint": "full vehicle swept rectangle",
+      "contexts": "exterior and window traffic",
+      "worldGeometry": "unchanged"
+    },
+    "terrainExecution": "exact sampler in a separately bundled same-origin worker pool; exact synchronous fallback on unsupported devices or worker failure",
+    "terrainGeneration": {
+      "owner": "rust-wasm",
+      "fields": 7,
+      "recipesRemoved": 11,
+      "removedSourceBytes": 22706,
+      "fallback": "none; required at startup",
+      "hotLoopWasmCalls": 0
+    },
+    "cityGeneration": {
+      "owner": "rust-wasm",
+      "functionsRemoved": 7,
+      "removedSourceBytes": 9908,
+      "batchCacheLimit": 512,
+      "execution": "cached numeric batches; no per-cell WASM calls",
+      "fallback": "none"
+    },
+    "blockGeneration": {
+      "owner": "rust-wasm",
+      "functionsRemoved": 8,
+      "inlineConsumersMigrated": 2,
+      "removedSourceBytes": 7394,
+      "batchCacheLimit": 512,
+      "execution": "cached district/block tables and complete parcel geometry",
+      "fallback": "none"
+    },
+    "sectorGeneration": {
+      "owner": "rust-wasm",
+      "functionsRemoved": 8,
+      "inlineConsumersMigrated": 1,
+      "removedSourceBytes": 25763,
+      "batchCacheLimit": 128,
+      "execution": "cached 100-identity facade recipe tables",
+      "fallback": "none"
+    },
+    "interiorGeneration": {
+      "owner": "rust-wasm",
+      "functionsRemoved": 5,
+      "inlineConsumersMigrated": 1,
+      "removedSourceBytes": 9672,
+      "execution": "bounded room command plans and shell buffers",
+      "fallback": "none"
+    },
+    "renderCaches": {
+      "enabled": true,
+      "farWall": "exact-input layer styles",
+      "farWallColorPaletteLimit": 1024,
+      "farWallColorRounding": "exact toFixed fallback near decimal ties",
+      "trackLimit": 8192,
+      "trackInvalidation": "terrain revision and streamed world origin"
+    },
+    "startupRendering": {
+      "resolve": "GPU batch plus one Canvas2D scene copy before the original dissolve",
+      "timing": "unchanged",
+      "fallback": "original Canvas2D",
+      "scope": "RESOLVING only"
+    },
+    "identityGeneration": {
+      "owner": "rust-wasm",
+      "functionsRemoved": 9,
+      "dictionariesRemoved": 10,
+      "removedSourceBytes": 19328,
+      "cacheLimit": 4096,
+      "execution": "cached UTF-8 atlas and naming records",
+      "fallback": "none"
+    },
+    "pilotGeneration": {
+      "owner": "rust-wasm",
+      "functionsRemoved": 6,
+      "pilots": 3,
+      "removedSourceBytes": 28080,
+      "execution": "one bounded startup packet; fixed layouts compiled into native builder calls and immutable data",
+      "fallback": "none",
+      "maximumPacketBytes": 1048576
+    },
+    "authoredGeneration": {
+      "owner": "rust-wasm",
+      "functionsRemoved": 28,
+      "quarters": 13,
+      "removedSourceBytes": 57226,
+      "execution": "one bounded startup packet of native authored construction records",
+      "fallback": "none",
+      "maximumPacketBytes": 1048576
+    },
+    "gameRuntime": {
+      "owner": "rust-wasm",
+      "functionsRemoved": 17,
+      "removedSourceBytes": 12204,
+      "ownership": [
+        "interior occupant state and BFS routing",
+        "train state, station braking, turnbacks, doors and passenger exchange",
+        "Auto Tour A* and path smoothing"
+      ],
+      "phase": "1-in-progress",
+      "abiVersion": 1,
+      "execution": "persistent native state; batched numeric snapshots",
+      "fallback": "none"
+    },
+    "populationRuntime": {
+      "owner": "rust-wasm",
+      "functionsRemoved": 11,
+      "removedSourceBytes": 9601,
+      "ownership": [
+        "crowd lane spacing",
+        "traffic targets, queue spacing and cyclist filtering",
+        "persistent traffic pace integration",
+        "population locality classification",
+        "signal schedules and live phase clocks"
+      ],
+      "phase": "1-in-progress",
+      "capabilityVersion": 3,
+      "execution": "batched crowd and traffic controllers; persistent native paces and signal clocks",
+      "fallback": "none"
+    },
+    "walkerRuntime": {
+      "owner": "rust-wasm",
+      "functionsRemoved": 6,
+      "removedSourceBytes": 6152,
+      "ownership": [
+        "ordinary pavement locomotion and bounds",
+        "pavement tracks and intersection turns",
+        "crossing setup, waiting and crossing integration"
+      ],
+      "phase": "1-in-progress",
+      "capabilityVersion": 3,
+      "execution": "native ordinary pedestrian locomotion with synchronous exact-world predicates",
+      "buffers": "reused browser packet/result/mirrors; stack input and separate reusable native output",
+      "fallback": "none"
+    },
+    "dayNight": {
+      "version": 13,
+      "clock": "shared 30x / 48-minute cycle; fixed 2026-10-24T00:00Z anchor; real UTC calendar seasons; Central England sun; static HEAD Date/Age time with whole-second precision, hourly/tab-return resync, monotonic extrapolation and labelled device fallback; no custom server endpoint",
+      "uphillTerrain": "Admit resolved first hits at low street-level eyes, including opposite riverbanks; retain exact ground ownership through the far-ground fade/dither handoff",
+      "riverReports": "Aircraft obey per-cell terrain/surface depth; exact shoreline materials keep water off banks; empty skyline sentinel cannot raise a ground tower; bridge/stream crossing faces use exact ray/plane projection; unresolved river-camera ground extends from the near tier to 420u with a bounded first-hit bracket",
+      "reporting": "local-only ZIP/text; true request/capture/receipt timing and city-ready age; bounded nearby vehicle/signal/route state, ten memory-only samples over five seconds filtered to the current area, population initialization audit and three small terrain/road patches; opt-in same-frame PNG; no telemetry, save reads or submission endpoint",
+      "reportedTrafficFixes": "preserve surviving Z-road surfaces where river-end landscaping overlapped them, without reopening X stubs; reject overlapping/junction spawn positions and unsafe fallback; park T-turns require real turn-plane crossing, use correct outgoing lanes and wait for an occupied exit",
+      "sidebar": "native-size ASCII display list; full-height scroll surface; compact navigation and context before map; adaptive local/district map; no menu/help row caps",
+      "startup": "early external bootstrap; real work checkpoints and scheduler yields; pulse; 5 seconds of completed visible live city frames before the existing dissolve, recent-frame stability gate and 9-second active-render cap; first-ready-frame completion; download/native errors and retry",
+      "developerControls": false,
+      "recording": "controls and developer API excluded at build time",
+      "locationScout": "location catalog, jump bridge, shortcut listener and UI excluded at build time",
+      "solar": "NOAA fractional-year approximation, not ephemeris-grade",
+      "night": "original sparse star field on black at sun elevation <= -10 degrees",
+      "sky": "continuous world-direction RGB backgrounds in the existing GPU batch (no atlas colour tiles); world-anchored glyph clouds; Canvas2D equivalent; no CSS gradient/brightness filter",
+      "windowHorizon": "daytime-only distant ground/haze continuation for unpainted downward window rays; real geometry/frame ownership first; night palette unchanged",
+      "windowMaterials": "selective outdoor material grading in aperture city/terrain and outdoor entity passes; indoor walls, furniture, mullions, reflective glass and balcony rails retain indoor lighting; stack-local scopes restored on early returns",
+      "transitTerrain": "real per-column piecewise-quadratic hill/crest depth through the full cinema range; river/stream fallback and separate bridge decks; exact-pose cache; natural ground occludes buildings; procedural pads retain their foundation band, elevated authored solids unchanged",
+      "clouds": "cached spherical periodic noise; procedural, not live weather",
+      "source": "independent rc.27 production-transformed snapshot",
+      "patchedFunctions": [
+        "prepareFrameProjection",
+        "frame",
+        "beginDirectCityBoot",
+        "updateDirectCityBoot",
+        "paintSky",
+        "paintInteriorWindow",
+        "paint",
+        "paintOpaqueCell",
+        "drawWindowTraffic",
+        "drawSkyTaxiCinemaVista",
+        "skyTaxiCinemaBox",
+        "renderControlsHelpDirectory",
+        "resizeAsciiInterface",
+        "asciiUiText",
+        "asciiUiGlyph",
+        "asciiUiWrap",
+        "renderAsciiInterface",
+        "p4RiverRoadEndSurfaceAtWorld",
+        "carSpawnClear",
+        "newCar",
+        "initializePopulationAtSpawn",
+        "turnCarAtCentralPark",
+        "paintFarGroundAt",
+        "aerialPixelOpen",
+        "paintGround",
+        "paintSkyTaxiNativeGround",
+        "paintExteriorRiverFlowOverlay",
+        "prepareLongHorizon",
+        "drawP4RiverBridgeVolumes",
+        "resolveMidCityGroundDepth"
+      ]
+    }
+  }
+}

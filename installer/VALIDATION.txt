@@ -1,0 +1,28 @@
+ASCII CITY CAPTURE 1.2.1 INSTALLER — 29 OCTOBER 2026
+
+Four installer policy tests pass. They check a fixed /Applications destination,
+non-relocatable app placement, full bundle upgrade, newer-version protection,
+strict bundle identity, correct version and Apple silicon/macOS requirements.
+These tests were introduced before the implementation.
+
+The package was created with Apple's pkgbuild and productbuild. Its full payload
+was independently extracted with pkgutil. Every file in the extracted app was
+compared to the original signed 1.2.1 app. The app is the sole installation payload.
+Package metadata specifies /Applications, root authorisation, no relocation,
+strict identity and upgrade replacement. No preinstall or postinstall scripts
+are present. No user data folder is included in the payload.
+
+The distribution limits installation to the local system domain, Apple silicon
+and macOS 12 or later. Welcome and completion pages explain installation and
+opening the app from Applications. No app is launched from a privileged installer
+script; the user opens the app normally after installation.
+
+The extracted app passed its native self-test, its ad-hoc signature verification
+and its separate-runtime validation of both included city releases. The original
+published ZIP's app was compared byte-for-byte with the installer source bundle.
+The final ZIP was checked for CRC integrity and exact package preservation.
+
+The installer package is unsigned and not Apple-notarised. The app itself has
+its existing ad-hoc signature. The actual installation into /Applications and
+an interactive Installer/Chrome launch were not performed in this session.
+The package was inspected and validated in temporary directories only.

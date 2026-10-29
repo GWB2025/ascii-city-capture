@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en-GB">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ASCII City Capture</title><link rel="stylesheet" href="/style.css"></head>
+<body>
+<header class="toolbar">
+  <div class="brand"><span class="mark" aria-hidden="true">▦</span><div><strong>ASCII CITY <span>CAPTURE</span></strong><small id="build-label">Preparing capture…</small></div></div>
+  <div id="status" role="status">Opening the city…</div>
+  <button id="versions" class="quiet">City versions</button>
+  <button id="capture" class="primary" disabled>Capture view <kbd>⌥ C</kbd></button>
+  <button id="help" class="quiet" aria-label="How to use capture">?</button>
+</header>
+<main class="explore"><iframe id="city" src="about:blank" title="Explore ASCII City" allow="autoplay; fullscreen"></iframe></main>
+<div id="notice" class="notice" role="alert" hidden></div>
+<dialog id="preview-dialog" aria-labelledby="preview-title">
+  <div class="preview-header"><div><div class="eyebrow">YOUR CAPTURE</div><h1 id="preview-title">A moment in the city.</h1></div><button id="resume" class="quiet">← Return to city</button></div>
+  <div class="preview-body">
+    <div class="preview-space"><div id="paper" class="paper"><img id="preview" alt="Preview of the captured city on the selected paper"></div><p id="caption" role="status">Preparing the original characters…</p></div>
+    <form id="settings">
+      <fieldset class="segmented"><legend>Export for</legend><label><input type="radio" name="mode" value="plot" checked><span>Pen plotter</span></label><label><input type="radio" name="mode" value="print"><span>Printer</span></label></fieldset>
+      <p id="mode-description" class="hint">Character contours on white paper. Hidden strokes are removed.</p>
+      <div class="pair"><label>Paper<select name="paper"><option>A4</option><option>A5</option><option>A6</option><option>Postcard</option><option>Custom</option></select></label><label>Orientation<select name="orientation"><option value="portrait">Portrait</option><option value="landscape">Landscape</option></select></label></div>
+      <div id="custom-size" class="pair" hidden><label>Width (mm)<input name="width" type="number" min="20" max="1000" value="210"></label><label>Height (mm)<input name="height" type="number" min="20" max="1000" value="297"></label></div>
+      <div class="pair"><label>Margin (mm)<input name="margin" type="number" min="0" max="100" step="1" value="10"></label><label>Drawing size<select name="scale"><option value="100">Fit the page</option><option value="85">85% of fit</option><option value="70">70% of fit</option><option value="50">50% of fit</option></select></label></div>
+      <label>Ink<select name="colour"><option value="mono">Black</option><option value="colour">Colour</option></select></label>
+      <label id="pen-field">Pen width (mm)<select name="penWidth"><option value="0.1">0.1 · extra fine</option><option value="0.2" selected>0.2 · fine</option><option value="0.3">0.3 · medium</option><option value="0.5">0.5 · broad</option></select></label>
+      <label id="background-field" class="check" hidden><input type="checkbox" name="background" checked> Include scene background</label>
+      <p id="preview-error" role="alert" hidden></p>
+      <div class="export-area"><button id="download" class="primary" type="button" disabled>Save plotter SVG</button><button id="download-png" class="quiet" type="button">Save captured image</button><p id="export-note" class="hint">Open the SVG in your SVG Plotter. Translucent effects become solid pen outlines.</p></div>
+    </form>
+  </div>
+</dialog>
+<dialog id="versions-dialog" aria-labelledby="versions-title">
+  <div class="preview-header"><div><div class="eyebrow">EXPLORE ANOTHER RELEASE</div><h2 id="versions-title">City versions</h2></div><button id="close-versions" class="quiet">Return to city</button></div>
+  <div class="versions-content">
+    <p class="hint">Switching starts a new city session and resets your current view. Your chosen version is remembered for the next launch.</p>
+    <div id="version-list" aria-label="Saved city versions"></div>
+    <form id="add-version"><label for="city-url">Add or check a city URL</label><div class="version-input"><input id="city-url" type="url" required placeholder="https://prototype…grownowgames.workers.dev/" autocomplete="url"><button id="check-city" class="primary" type="submit">Check and add</button></div><p class="hint">Paste a release link to save a separate copy. Future releases are checked for capture compatibility. Previously saved copies stay available.</p></form>
+    <p id="version-status" role="status" aria-live="polite"></p>
+  </div>
+</dialog>
+<dialog id="help-dialog" aria-labelledby="help-title"><div class="help-content"><div class="eyebrow">FROM CITY TO PAPER</div><h2 id="help-title">Explore. Capture. Export.</h2><ol><li>Click in the city and explore using its normal controls and transport.</li><li>Click <strong>Capture view</strong>. The city pauses while you prepare your image.</li><li>Choose your paper, ink and export mode. The preview shows what will be saved.</li><li>Save the SVG, then choose <strong>Return to city</strong> to carry on from that spot.</li></ol><p>Use <strong>Printer</strong> for filled characters and the full scene. Use <strong>Pen plotter</strong> for visible character contours without background strokes. Colour plotting uses six pen colours.</p><p>This is a separate city session. It does not take over a view already open on the original website. The original city interface and capture controls are excluded from the export.</p><p>Use <strong>City versions</strong> to switch saved releases or add a city URL. Switching restarts the city; SVGs you have saved are unaffected.</p><p id="font-note"></p><button id="close-help" class="primary">Explore the city</button></div></dialog>
+<script type="module" src="/app.js"></script>
+</body></html>
