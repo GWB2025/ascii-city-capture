@@ -202,3 +202,10 @@ Its CAPTURE_TEST_ROOT contains bridge.js and a generated profile.json;
 CITY_TEST_ROOT contains the selected release cache. RENAMED=1 exercises the
 synthetic future build, with renamed identifiers and its matching profile.
 The synthetic build is test-only and is not offered as a real city release.
+
+AI ASSISTANCE
+
+This project includes contributions developed by Gordon Brindle with assistance
+from OpenAI's ChatGPT, particularly with software implementation and
+documentation. Gordon directs the project and makes the final design and
+development decisions.

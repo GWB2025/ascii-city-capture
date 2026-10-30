@@ -46,3 +46,10 @@ Run the installer policy tests:
 
 The builder verifies its expanded package and creates an accompanying ZIP.
 See Source/VALIDATION.txt for what was checked.
+
+AI ASSISTANCE
+
+This project includes contributions developed by Gordon Brindle with assistance
+from OpenAI's ChatGPT, particularly with software implementation and
+documentation. Gordon directs the project and makes the final design and
+development decisions.

@@ -116,3 +116,10 @@ This repository is private. It includes the tested upstream snapshots for
 reproducible builds; no permission to redistribute those assets is implied.
 See [third-party notices](THIRD_PARTY_NOTICES.md). No project-wide open-source
 licence has been selected for the companion itself.
+
+## AI assistance
+
+This project includes contributions developed by Gordon Brindle with assistance
+from OpenAI's ChatGPT, particularly with software implementation and
+documentation. Gordon directs the project and makes the final design and
+development decisions.
